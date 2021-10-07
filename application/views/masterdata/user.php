@@ -19,7 +19,7 @@
         <td class="headernamaarea">NAMA</td>
         <td class="headerareacode">USER ID</td>
       </tr>
-      <?php foreach($user as $u) { ?>
+      <?php foreach($user2 as $u) { ?>
       <tr>
         <td class="areacode"><?= $u['buCode'] ?></td>
         <td><?= $u['npk'] ?></td>

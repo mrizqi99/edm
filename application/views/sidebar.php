@@ -77,14 +77,13 @@
     </li>
     <li>
   <div class="profile-details">
-    <div class="profile-content">
-      <img src="<?php echo base_url() ?>image/profile.jpg" alt="profileImg">
-    </div>
     <div class="name-job">
-      <div class="profile_name">Rizqi</div>
-      <div class="job">Nganggur</div>
+      <div class="profile_name"><?= $user['nama']; ?></div>
+      <div class="job">#USER ID: <?= $user['userId']; ?>&ensp;#BU : <?= $user['buCode']; ?></div>
     </div>
-    <i class='bx bx-log-out' ></i>
+    <a href="<?= base_url('Login/logout'); ?>">
+      <i class='bx bx-power-off'></i>
+    </a>
   </div>
 </li>
 </ul>

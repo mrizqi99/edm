@@ -19,7 +19,7 @@
         <td class="headerareacode">KODE BU</td>
         <td class="headerareacode">KODE AREA</td>
         <td class="headerareacode">CRITICAL</td>
-        <td class="headerareacode">ACTION</td>
+        <td class="headeredit">ACTION</td>
       </tr>
       <?php foreach($dies as $d) { ?>
       <tr>
@@ -28,7 +28,7 @@
         <td><?= $d['buCode'] ?></td>
         <td><?= $d['areaCode'] ?></td>
         <td><?= $d['critical'] ?></td>
-        <td></td>
+        <td class="edit"><a href="<?= base_url('MasterData/editDies/').$d['diesNo'];?>">EDIT</a></td>
       </tr>
       <?php } ?>
     </table>

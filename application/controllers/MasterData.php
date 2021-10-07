@@ -1,6 +1,10 @@
 <?php
 class MasterData extends CI_Controller{
 
+  public function __construct() {
+    parent::__construct();
+    cek_login();
+  }
   public function index(){
     $data['title'] = "Dashboard";
     $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
@@ -11,6 +15,7 @@ class MasterData extends CI_Controller{
   }
   public function area(){
     $data['title'] = "Area List";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $data['area'] = $this->db->get('area')->result_array();
     $this->load->view('header', $data);
     $this->load->view('sidebar', $data);
@@ -19,6 +24,7 @@ class MasterData extends CI_Controller{
   }
   public function tambahArea(){
     $data['title'] = "Tambah Area";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $this->load->view('header', $data);
     $this->load->view('sidebar', $data);
     $this->load->view('masterdata/tambahArea', $data);
@@ -37,6 +43,7 @@ class MasterData extends CI_Controller{
   }
   public function section(){
     $data['title'] = "BU List";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $data['section'] = $this->db->get('bu')->result_array();
     $this->load->view('header', $data);
     $this->load->view('sidebar', $data);
@@ -45,6 +52,7 @@ class MasterData extends CI_Controller{
   }
   public function tambahSection(){
     $data['title'] = "Tambah BU";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $this->load->view('header', $data);
     $this->load->view('sidebar', $data);
     $this->load->view('masterdata/tambahSection', $data);
@@ -67,6 +75,7 @@ class MasterData extends CI_Controller{
   }
   public function PIC(){
     $data['title'] = "PIC List";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $data['PIC'] = $this->db->get('pic')->result_array();
     $this->load->view('header', $data);
     $this->load->view('sidebar', $data);
@@ -75,6 +84,7 @@ class MasterData extends CI_Controller{
   }
   public function tambahPIC(){
     $data['title'] = "Tambah PIC";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $this->load->view('header', $data);
     $this->load->view('sidebar', $data);
     $this->load->view('masterdata/tambahPIC', $data);
@@ -93,7 +103,8 @@ class MasterData extends CI_Controller{
   }
   public function user(){
     $data['title'] = "User List";
-    $data['user'] = $this->db->get('user')->result_array();
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
+    $data['user2'] = $this->db->get('user')->result_array();
     $this->load->view('header', $data);
     $this->load->view('sidebar', $data);
     $this->load->view('masterdata/user', $data);
@@ -101,6 +112,7 @@ class MasterData extends CI_Controller{
   }
   public function tambahUser(){
     $data['title'] = "Tambah User";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $data['bu'] = $this->db->get('bu')->result_array();
     $data['PIC'] = $this->db->get('pic')->result_array();
     $this->load->view('header', $data);
@@ -125,6 +137,7 @@ class MasterData extends CI_Controller{
   }
   public function dies(){
     $data['title'] = "Dies List";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $data['dies'] = $this->db->get('dies')->result_array();
     $this->load->view('header', $data);
     $this->load->view('sidebar', $data);
@@ -133,6 +146,7 @@ class MasterData extends CI_Controller{
   }
   public function tambahDies(){
     $data['title'] = "Tambah Dies";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $data['bu'] = $this->db->get('bu')->result_array();
     $data['area'] = $this->db->get('area')->result_array();
     $this->load->view('header', $data);
@@ -159,6 +173,38 @@ class MasterData extends CI_Controller{
     );
     $this->ModelMasterData->inputDies($data);
     redirect('MasterData/dies');
+  }
+  public function editDies(){
+    $data['title'] = "Tambah Dies";
+    $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
+    $data['dies'] = $this->ModelMasterData->dies(['diesNo' => $this->uri->segment(3)])->result_array();
+    $data['bu'] = $this->db->get('bu')->result_array();
+    $data['area'] = $this->db->get('area')->result_array();
+    $this->form_validation->set_rules('diesNo', 'Dies No', 'required',
+    [ 'required' => 'Dies No Tidak Boleh Kosong']);
+    if ($this->form_validation->run() == false) {
+      $this->load->view('header', $data);
+      $this->load->view('sidebar', $data);
+      $this->load->view('masterdata/editDies', $data);
+      $this->load->view('footer', $data);
+    }
+    else {
+      $diesNo = $this->input->post('diesNo');
+      $diesName = $this->input->post('diesName');
+      $buCode = $this->input->post('buCode');
+      $areaCode = $this->input->post('areaCode');
+      $critical = $this->input->post('critical');
+
+      $data = array(
+        'diesNo' => $diesNo,
+        'diesName' => $diesName,
+        'buCode' => $buCode,
+        'areaCode' => $areaCode,
+        'critical' => $critical
+      );
+      $this->ModelMasterData->editDies($data, ['diesNo' => $this->input->post('diesNo')]);
+      redirect('MasterData/dies');
+    }
   }
 }
 

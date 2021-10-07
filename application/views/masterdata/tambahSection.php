@@ -27,7 +27,12 @@
       </tr>
       <tr>
         <td class="formnamaarea">
-          <input type="text" name="pabrik" placeholder="Pabrik">
+          <select name="pabrik">
+            <option label="Choose"></option>
+            <option value="BEKASI" label="BEKASI"></option>
+            <option value="FAJAR" label="FAJAR"></option>
+            <option value="SUNTER" label="SUNTER"></option>
+          </select>
         </td>
         <td class="formnamaarea">
           <input type="text" name="departemen" placeholder="Departemen">

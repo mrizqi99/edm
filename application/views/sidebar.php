@@ -1,6 +1,6 @@
 <div class="sidebar close">
   <div class="logo-details">
-    <span class="logo_name"><img src="<?php echo base_url() ?>image/logo.png"></img></span>
+    <span class="logo_name"><img src="<?php echo base_url() ?>assets/image/logo.png"></img></span>
   </div>
   <ul class="nav-links">
     <li>
@@ -22,6 +22,11 @@
       </div>
       <ul class="sub-menu">
         <li><a class="link_name" href="#">Maintain Menu</a></li>
+        <li><a href="<?= base_url('maintainMenu/createDaily'); ?>">Create Daily Activity</a></li>
+        <li><a href="">Daily Activity List</a></li>
+        <li><a href="">Repair Die List</a></li>
+        <li><a href="<?= base_url('maintainMenu/editHistory'); ?>">Edit History</a></li>
+        <li><a href="">Historical Daily Activity</a></li>
       </ul>
     </li>
     <li>
@@ -38,7 +43,6 @@
         <li><a href="<?= base_url('MasterData/section'); ?>">Section</a></li>
         <li><a href="<?= base_url('MasterData/dies'); ?>">Dies</a></li>
         <li><a href="<?= base_url('MasterData/PIC'); ?>">PIC</a></li>
-        <li><a href="#">Plan</a></li>
         <li><a href="<?= base_url('MasterData/user'); ?>">User</a></li>
       </ul>
     </li>

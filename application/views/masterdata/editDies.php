@@ -15,7 +15,7 @@
         <td class="namaarea">DIES NAME</td>
       </tr>
       <tr>
-        <td class="formdiesno">
+        <td class="formnamaarea">
           <input type="text" name="diesNo" value="<?= $d['diesNo']; ?>">
         </td>
         <td class="formnamaarea">

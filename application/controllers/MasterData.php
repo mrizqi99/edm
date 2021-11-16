@@ -175,7 +175,7 @@ class MasterData extends CI_Controller{
     redirect('MasterData/dies');
   }
   public function editDies(){
-    $data['title'] = "Tambah Dies";
+    $data['title'] = "Edit Dies";
     $data['user'] = $this->ModelMasterData->cekData(['userId' => $this->session->userdata('userId')])->row_array();
     $data['dies'] = $this->ModelMasterData->dies(['diesNo' => $this->uri->segment(3)])->result_array();
     $data['bu'] = $this->db->get('bu')->result_array();

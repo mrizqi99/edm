@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title> <?= $title; ?> </title>
-    <link rel="stylesheet" href="<?php echo base_url() ?>css/style.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css" type="text/css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/jquery-ui.min.css" type="text/css"> -->
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
